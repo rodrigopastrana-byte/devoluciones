@@ -3,19 +3,76 @@
 <head>
   <meta charset="UTF-8">
   <title>Validador de Devoluciones</title>
+
   <style>
-    body { font-family: Arial; padding: 20px; max-width: 500px; margin: auto; }
-    #card { margin-top: 20px; padding: 16px; border: 1px solid #ccc; border-radius: 8px; background: #fafafa; }
+    body {
+      font-family: 'Inter', Arial, sans-serif;
+      background: linear-gradient(135deg, #eef2ff, #dbe4ff);
+      padding: 40px 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    #container {
+      width: 100%;
+      max-width: 480px;
+      background: white;
+      padding: 24px;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      margin-top: 0;
+      text-align: center;
+      color: #2d3a8c;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+
+    button {
+      margin-top: 12px;
+      width: 100%;
+      padding: 12px;
+      background: #4a6cff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    button:hover {
+      background: #3a57d6;
+    }
+
+    #card {
+      margin-top: 20px;
+      padding: 16px;
+      border-radius: 12px;
+      background: #f7f9ff;
+      border: 1px solid #dce3ff;
+    }
   </style>
 </head>
+
 <body>
 
-<h2>Validación de Devoluciones</h2>
+<div id="container">
+  <h2>Validación de Devoluciones</h2>
 
-<input id="orden" type="text" placeholder="Número de orden" style="padding:8px; width:100%;">
-<button onclick="buscar()" style="margin-top:10px; padding:10px 20px;">Validar</button>
+  <input id="orden" type="text" placeholder="Número de orden">
+  <button onclick="buscar()">Validar</button>
 
-<div id="card"></div>
+  <div id="card"></div>
+</div>
 
 <script>
 const API_URL = "https://script.google.com/macros/s/AKfycbxa0RaBKZ5_Bwt9uSYRQZcgq6DYTMCjx4HMCjiB-5iCPxbSAoRi2N8pbri7KqFqJijM/exec";
