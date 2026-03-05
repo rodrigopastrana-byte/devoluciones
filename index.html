@@ -104,17 +104,7 @@ function buscar() {
             <b>Mail RT:</b> ${d.mail}<br>
             <b>ID RT:</b> ${d.idrt}<br>
             <b>Tipo:</b> ${d.tipo}<br>
-            <b>Cantidad:</b> ${d.cantidad}<br><br>
-
-            ${d.fotoFactura ? `
-              <b>Foto de factura:</b><br>
-              <img src="${d.fotoFactura}" style="width:100%; border-radius:12px; margin-bottom:16px;">
-            ` : ""}
-
-            ${d.fotoDevolucion ? `
-              <b>Foto de la devolución:</b><br>
-              <img src="${d.fotoDevolucion}" style="width:100%; border-radius:12px;">
-            ` : ""}
+            <b>Cantidad:</b> ${d.cantidad}<br>
           </div>
         `;
       }
