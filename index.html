@@ -8,10 +8,10 @@
     body {
       font-family: 'Inter', Arial, sans-serif;
       background-image: url("https://rappi-cargo-br.s3.amazonaws.com/ar/vivo-images/app/refer-H1NQwU8tZe-M.png");
-      background-size: cover;          /* La imagen ocupa toda la pantalla */
-      background-position: center;     /* Centrada */
-      background-repeat: no-repeat;    /* No se repite */
-      background-attachment: fixed;    /* Efecto moderno al scrollear */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
       padding: 40px 20px;
       display: flex;
       justify-content: center;
@@ -20,7 +20,7 @@
     #container {
       width: 100%;
       max-width: 480px;
-      background: rgba(255,255,255,0.85); /* Caja semitransparente */
+      background: rgba(255,255,255,0.85);
       padding: 24px;
       border-radius: 16px;
       box-shadow: 0 8px 20px rgba(0,0,0,0.25);
@@ -98,12 +98,23 @@ function buscar() {
         document.getElementById("card").innerHTML = `
           <div>
             <strong style="color:green;">✔ Devolución registrada</strong><br><br>
+
             <b>Fecha:</b> ${d.fecha}<br>
             <b>Pick Up:</b> ${d.pickup}<br>
             <b>Mail RT:</b> ${d.mail}<br>
             <b>ID RT:</b> ${d.idrt}<br>
             <b>Tipo:</b> ${d.tipo}<br>
-            <b>Cantidad:</b> ${d.cantidad}
+            <b>Cantidad:</b> ${d.cantidad}<br><br>
+
+            ${d.fotoFactura ? `
+              <b>Foto de factura:</b><br>
+              <img src="${d.fotoFactura}" style="width:100%; border-radius:12px; margin-bottom:16px;">
+            ` : ""}
+
+            ${d.fotoDevolucion ? `
+              <b>Foto de la devolución:</b><br>
+              <img src="${d.fotoDevolucion}" style="width:100%; border-radius:12px;">
+            ` : ""}
           </div>
         `;
       }
