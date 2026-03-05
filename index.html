@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Validador de Devoluciones</title>
+  <style>
+    body { font-family: Arial; padding: 20px; max-width: 500px; margin: auto; }
+    #card { margin-top: 20px; padding: 16px; border: 1px solid #ccc; border-radius: 8px; background: #fafafa; }
+  </style>
+</head>
+<body>
+
+<h2>Validación de Devoluciones</h2>
+
+<input id="orden" type="text" placeholder="Número de orden" style="padding:8px; width:100%;">
+<button onclick="buscar()" style="margin-top:10px; padding:10px 20px;">Validar</button>
+
+<div id="card"></div>
+
+<script>
+const API_URL = "https://script.google.com/macros/s/AKfycbxa0RaBKZ5_Bwt9uSYRQZcgq6DYTMCjx4HMCjiB-5iCPxbSAoRi2N8pbri7KqFqJijM/exec";
+
+function buscar() {
+  const orden = document.getElementById("orden").value;
+  if (!orden) {
+    document.getElementById("card").innerHTML = "<span style='color:red;'>Ingresá un número de orden.</span>";
+    return;
+  }
+
+  fetch(API_URL + "?orden=" + orden)
+    .then(r => r.json())
+    .then(res => {
+      if (res.status === "not_found") {
+        document.getElementById("card").innerHTML = "<span style='color:red;'>❌ No se encontró la devolución.</span>";
+      } else if (res.status === "ok") {
+        const d = res.data;
+        document.getElementById("card").innerHTML = `
+          <div>
+            <strong style="color:green;">✔ Devolución registrada</strong><br><br>
+            <b>Fecha:</b> ${d.fecha}<br>
+            <b>Pick Up:</b> ${d.pickup}<br>
+            <b>Mail RT:</b> ${d.mail}<br>
+            <b>ID RT:</b> ${d.idrt}<br>
+            <b>Tipo:</b> ${d.tipo}<br>
+            <b>Cantidad:</b> ${d.cantidad}
+          </div>
+        `;
+      }
+    })
+    .catch(err => {
+      document.getElementById("card").innerHTML = "<span style='color:red;'>Error de conexión.</span>";
+    });
+}
+</script>
+
+</body>
+</html>
