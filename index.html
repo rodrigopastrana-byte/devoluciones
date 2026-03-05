@@ -19,6 +19,44 @@
       min-height: 100vh;
     }
 
+    /* BOTONES SUPERIORES */
+    #top-buttons {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      gap: 10px;
+      z-index: 999;
+    }
+
+    .mini-btn {
+      padding: 10px 14px;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      cursor: pointer;
+      color: white;
+      font-weight: 500;
+      transition: 0.2s;
+    }
+
+    .mini-btn.defensoria {
+      background: #25D366;
+    }
+
+    .mini-btn.defensoria:hover {
+      background: #1da851;
+    }
+
+    .mini-btn.blog {
+      background: #FF6F00;
+    }
+
+    .mini-btn.blog:hover {
+      background: #e65f00;
+    }
+
+    /* CONTENEDOR PRINCIPAL */
     #container {
       width: 100%;
       max-width: 480px;
@@ -79,10 +117,24 @@
 
 <body>
 
+<!-- BOTONES SUPERIORES -->
+<div id="top-buttons">
+  <button class="mini-btn defensoria"
+          onclick="window.open('https://wa.me/5491155734175', '_blank')">
+    Defensoría
+  </button>
+
+  <button class="mini-btn blog"
+          onclick="window.open('https://soyrappi.com.ar/blog', '_blank')">
+    Blog Soy Rappi
+  </button>
+</div>
+
+<!-- CONTENEDOR PRINCIPAL -->
 <div id="container">
   <h2>Validación de Devoluciones</h2>
 
-  <input id="orden" type="text" placeholder="Número de orden">
+  <input id="orden" type="text" placeholder="Número de orden" autofocus>
   <button onclick="buscar()">Validar</button>
 
   <div id="card"></div>
@@ -96,11 +148,13 @@
 const API_URL = "https://script.google.com/macros/s/AKfycbxU5SZQSfDs1IkG4VIDs-PcP5eyp9RvqtzDsRbjad6vtnHv_3XNNTfRJNWkDNkM6c94/exec";
 
 function buscar() {
-  const orden = document.getElementById("orden").value;
+  const orden = document.getElementById("orden").value.trim();
   if (!orden) {
     document.getElementById("card").innerHTML = "<span style='color:red;'>Ingresá un número de orden.</span>";
     return;
   }
+
+  document.getElementById("card").innerHTML = "<span style='color:#2d3a8c;'>Buscando...</span>";
 
   fetch(API_URL + "?orden=" + orden)
     .then(r => r.json())
@@ -127,6 +181,11 @@ function buscar() {
       document.getElementById("card").innerHTML = "<span style='color:red;'>Error de conexión.</span>";
     });
 }
+
+// Permitir Enter
+document.getElementById("orden").addEventListener("keypress", function(e) {
+  if (e.key === "Enter") buscar();
+});
 </script>
 
 </body>
